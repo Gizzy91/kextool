@@ -39,9 +39,20 @@ namespace kextool
                     pos += sizeof(float);
                     pos += sizeof(float);
                     pos += sizeof(float);
+
+                    int nodeCount = reader.ReadInt32();
+                    Console.WriteLine("Node Count: " + nodeCount);
+                    pos += sizeof(int);
+
+                    if (boundingBoxMax.Length() == 0 && boundingBoxMin.Length() == 0 && nodeCount == 1)
+                        Console.WriteLine("This is a static mesh!");
+                    else Console.WriteLine("This is an animating mesh!");
+
                     Console.Read();
+                    Environment.Exit(0);
                 }
             }
-        } 
-    }
+        }
+    } 
 }
+
